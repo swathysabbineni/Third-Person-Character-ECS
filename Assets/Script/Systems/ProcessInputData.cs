@@ -12,7 +12,7 @@ public class ProcessInputData : SystemBase
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
 
-        Entities.ForEach((ref RawInputData rawInputData, ref MoveData moveData) => {
+        Entities.ForEach((ref RawInputData rawInputData, ref MoveData moveData, ref RotateData rotateData) => {
             // Implement the work to perform for each entity here.
             // You should only access data that is local or that is a
             // field on this job. Note that the 'rotation' parameter is
@@ -25,6 +25,7 @@ public class ProcessInputData : SystemBase
             rawInputData.inputH = inputH;
             rawInputData.inputV = inputV;
             moveData.targetDirection = new float3(rawInputData.inputH, 0, rawInputData.inputV);
+            rotateData.rotateTargetPosition = moveData.targetDirection;
         }).Schedule();
     }
 }

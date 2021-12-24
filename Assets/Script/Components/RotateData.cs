@@ -7,6 +7,7 @@ using Unity.Mathematics;
 public struct RotateData : IComponentData
 {
     public float rotateSpeed;
+    public float3 rotateTargetPosition;
     
     
 }

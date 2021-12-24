@@ -11,11 +11,11 @@ public class RotateTowards : SystemBase
     {
        
         
-        Entities.ForEach((ref Translation translation, ref Rotation rotation, in MoveData movement, in RotateData rotateData) => {
+        Entities.ForEach((ref Translation translation, ref Rotation rotation, in RotateData rotateData) => {
 
-            if (!movement.targetDirection.Equals(float3.zero))
+            if (!rotateData.rotateTargetPosition.Equals(float3.zero))
             {
-                quaternion targetRotation = quaternion.LookRotationSafe(movement.targetDirection, math.up());
+                quaternion targetRotation = quaternion.LookRotationSafe(rotateData.rotateTargetPosition, math.up());
                 rotation.Value = math.slerp(rotation.Value, targetRotation, rotateData.rotateSpeed);
             }
         }).Schedule();

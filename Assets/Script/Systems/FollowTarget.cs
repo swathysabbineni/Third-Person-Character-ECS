@@ -12,11 +12,11 @@ public class FollowTarget : SystemBase
         
         Entities.ForEach((ref MoveData movement ,in TargetData targetData, in Translation translation) => {
             ComponentDataFromEntity<Translation> translationArray = GetComponentDataFromEntity<Translation>(true);
-            if(! translationArray.HasComponent(targetData.targetEntity))
+            if(! translationArray.HasComponent(targetData.followEntity))
             {
                 return;
             }
-            Translation targetPosition = translationArray[targetData.targetEntity];
+            Translation targetPosition = translationArray[targetData.followEntity];
             movement.targetDirection = targetPosition.Value - translation.Value;
         }).Schedule();
     }
